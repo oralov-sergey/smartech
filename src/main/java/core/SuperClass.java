@@ -7,13 +7,22 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pagePbject.YandexPage;
+import pageObject.AvtodispetcherPage;
+import pageObject.YandexPage;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 public class SuperClass {
     private static final int TIME_OUT_IN_SECONDS = 10;
-    private static WebDriver driver;
-    private static WebDriverWait wait;
+    public static WebDriver driver; // можно делать public?
+    public static WebDriverWait wait; // можно делать public?
     public YandexPage yandexPage;
+    public AvtodispetcherPage avtodispetcherPage;
+
 
 
     @Before
@@ -23,23 +32,7 @@ public class SuperClass {
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
         this.yandexPage = new YandexPage();
-
-    }
-
-    public void getBrowser(String url){
-            driver.get(url);
-    }
-
-    public void waitElementAndClick(String xpath) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
-    }
-    public void waitElementAndClickByText(String text) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(text))).click();
-    }
-
-
-    public void waitElementAndSendKeys(String xpath, String text) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).sendKeys(text);
+        this.avtodispetcherPage = new AvtodispetcherPage();
     }
 
 
