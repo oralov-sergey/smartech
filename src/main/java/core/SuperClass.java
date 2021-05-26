@@ -2,26 +2,27 @@ package core;
 
 import org.junit.After;
 import org.junit.Before;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObject.AvtodispetcherPage;
-import pageObject.YandexPage;
+import pageObject.AvtodispetcherCalculationPage;
+import pageObject.AvtodispetcherRequestPage;
+import pageObject.YandexResultsPage;
+import pageObject.YandexSearchFieldPage;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-
-import static org.junit.Assert.assertEquals;
 
 public class SuperClass {
     private static final int TIME_OUT_IN_SECONDS = 10;
-    public static WebDriver driver; // можно делать public?
-    public static WebDriverWait wait; // можно делать public?
-    public YandexPage yandexPage;
-    public AvtodispetcherPage avtodispetcherPage;
+    protected static WebDriver driver; // можно сделать статичным?
+    protected static WebDriverWait wait; // можно сделать статичным?
+    public YandexSearchFieldPage yandexSearchFieldPage;
+    public YandexResultsPage yandexResultsPage;
+    public AvtodispetcherRequestPage avtodispetcherRequestPage;
+    public AvtodispetcherCalculationPage avtodispetcherCalculationPage;
+    public RegexParser regexParser;
+    public ActionsOnThePage actionsOnThePage;
+    public Comparison comparison;
+
 
 
 
@@ -31,9 +32,16 @@ public class SuperClass {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
-        this.yandexPage = new YandexPage();
-        this.avtodispetcherPage = new AvtodispetcherPage();
+        this.yandexSearchFieldPage = new YandexSearchFieldPage();
+        this.yandexResultsPage = new YandexResultsPage();
+        this.avtodispetcherRequestPage = new AvtodispetcherRequestPage();
+        this.avtodispetcherCalculationPage = new AvtodispetcherCalculationPage();
+        this.actionsOnThePage = new ActionsOnThePage();
+        this.comparison = new Comparison();
+
+
     }
+
 
 
     @After

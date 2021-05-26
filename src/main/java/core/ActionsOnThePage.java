@@ -1,61 +1,62 @@
-package pageObject;
+package core;
 
-import core.SuperClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+public class ActionsOnThePage extends SuperClass {
 
-public class Methods extends SuperClass {
+    // могут все методы быть static?
 
-    public void getBrowser(String url){
+    public static void getBrowser(String url){
         driver.get(url);
     }
 
-    public void waitElementAndClick(String xpath) {
+    public static void waitElementAndClick(String xpath) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).click();
     }
-    public void waitElementAndClickByText(String text) {
+    public static void waitElementAndClickByText(String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.partialLinkText(text))).click();
     }
 
 
-    public void waitElementAndSendKeys(String xpath, String text) {
+    public static void waitElementAndSendKeys(String xpath, String text) {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).clear();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).sendKeys(text); // реализовать иначе
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(xpath))).sendKeys(text);
     }
 
-    public void equalsTwoString(String expected, String actual) {
-        assertEquals("Error object not equals", expected, actual);
-    }
 
-    public String getUrl(){
+
+    public static String getUrl(){
         return driver.getCurrentUrl();
     }
 
-    public String getText(String xpath){
+    public static String getText(String xpath){
         return driver.findElement(By.xpath(xpath)).getText();
     }
 
-    public void switchToWindowPopUp(int numberOfWindow) {
+    public static void switchToWindowPopUp(int numberOfWindow) {
 
         Set<String> abc = driver.getWindowHandles();
         List<String> windowStrings = new ArrayList<>(abc);
         driver.switchTo().window(windowStrings.get(numberOfWindow));
     }
 
-    public void wait30Seconds(){
+    public static void staticWait(int time){
         try {
-            Thread.sleep(30000);
+            Thread.sleep(time * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
+    public static void scrollThePage(String pixels) {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("scroll(0, "+pixels+");");
 
+    }
 
 }
