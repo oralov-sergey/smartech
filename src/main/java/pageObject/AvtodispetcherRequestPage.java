@@ -32,23 +32,6 @@ public class AvtodispetcherRequestPage extends SuperClass {
 
 
 
-    /*@Step("Check the result")
-    public void checkResults(){
-        comparison.equalsTwoString(EXPECTED_DISTANCE_BEFORE_CHANGES,actionsOnThePage.getText(DISTANCE_XPATH));
-        comparison.equalsTwoString(EXPECTED_TOTAL_PRICE_BEFORE_CHANGES,regexParser.getFuelPriceFromText(avtodispetcherPage.getDataFromForm()));
-    }
-    как сделать степы?
-     */
-
-
-
-    /*@Step("Check the results after changes")
-    public void checkResultsAfterChanges(){
-        comparison.equalsTwoString(EXPECTED_DISTANCE_AFTER_CHANGES,actionsOnThePage.getText(DISTANCE_XPATH));
-        comparison.equalsTwoString(EXPECTED_TOTAL_PRICE_AFTER_CHANGES,actionsOnThePage.getText(TOTAL_PRICE_XPATH));
-    }
-    как сделать степы?
-     */
 
 
 }

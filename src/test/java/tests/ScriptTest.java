@@ -10,24 +10,27 @@ public class ScriptTest extends SuperClass {
     public static final String EXPECTED_TOTAL_PRICE_BEFORE_CHANGES = "3726";
     public static final String EXPECTED_DISTANCE_AFTER_CHANGES = "966";
     public static final String EXPECTED_TOTAL_PRICE_AFTER_CHANGES = "4002";
+    public static final String THE_DISTANCES_ARE_NOT_THE_SAME = "The distances are not the same";
+    public static final String DISTANCE_MESSAGE = THE_DISTANCES_ARE_NOT_THE_SAME;
+    public static final String COST_MESSAGE = "The cost is not the same";
+    public static final String URL_MESSAGE = "The Urls are not the same";
 
 
     @Test
     public void script(){
 
-
         yandexSearchFieldPage.getYandex();
         yandexSearchFieldPage.writeTextAndClick();
         yandexResultsPage.goToTheWebsite();
         yandexResultsPage.switchToAvtodispetcher();
-        comparison.equalsCiteUrls(EXPECTED_SITE,actionsOnThePage.getUrl());
+        comparison.equalsTwoStrings(EXPECTED_SITE,actionsOnThePage.getUrl(), URL_MESSAGE);
         avtodispetcherRequestPage.fillInTheInputFields();
         avtodispetcherRequestPage.calculateTheWay();
-        comparison.equalsDistance(EXPECTED_DISTANCE_BEFORE_CHANGES,actionsOnThePage.getText(avtodispetcherCalculationPage.DISTANCE_XPATH));
-        comparison.equalsCost(EXPECTED_TOTAL_PRICE_BEFORE_CHANGES,regexParser.getFuelPriceFromText(avtodispetcherCalculationPage.getDataFromForm()));
+        comparison.equalsTwoStrings(EXPECTED_DISTANCE_BEFORE_CHANGES,actionsOnThePage.getText(avtodispetcherCalculationPage.DISTANCE_XPATH), DISTANCE_MESSAGE);
+        comparison.equalsTwoStrings(EXPECTED_TOTAL_PRICE_BEFORE_CHANGES,regexParser.getFuelPriceFromText(avtodispetcherCalculationPage.getDataFromForm()), COST_MESSAGE);
         avtodispetcherCalculationPage.changeDirection();
-        comparison.equalsDistance(EXPECTED_DISTANCE_AFTER_CHANGES,actionsOnThePage.getText(avtodispetcherCalculationPage.DISTANCE_XPATH));
-        comparison.equalsCost(EXPECTED_TOTAL_PRICE_AFTER_CHANGES,regexParser.getFuelPriceFromText(avtodispetcherCalculationPage.getDataFromForm()));
+        comparison.equalsTwoStrings(EXPECTED_DISTANCE_AFTER_CHANGES,actionsOnThePage.getText(avtodispetcherCalculationPage.DISTANCE_XPATH),DISTANCE_MESSAGE);
+        comparison.equalsTwoStrings(EXPECTED_TOTAL_PRICE_AFTER_CHANGES,regexParser.getFuelPriceFromText(avtodispetcherCalculationPage.getDataFromForm()),COST_MESSAGE);
 
 
 
