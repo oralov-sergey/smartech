@@ -1,5 +1,6 @@
 package core;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Attachment;
 import org.junit.Before;
 import org.junit.Rule;
@@ -29,7 +30,7 @@ public class SuperClass {
 
     @Before
     public void startWebDriver() {
-        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().setSize(new Dimension(1600, 900));
         wait = new WebDriverWait(driver, TIME_OUT_IN_SECONDS);
