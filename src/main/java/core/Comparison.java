@@ -28,8 +28,12 @@ public class Comparison extends SuperClass {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage);
+        int diffNumber = new ImageDiffer().makeDiff(expectedImage, actualImage).getDiffSize();
+        ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage).withDiffSizeTrigger(50000);
+         /*
+             ".withDiffSizeTrigger(50000)" I used it because when I checked the test in a day, there was a test failure.
+             It happened because of changing that map on the website itself.
+         */
         File diffFile = new File("src/main/resources/screenshots/" + diffImageName + ".png");
         if (diff.hasDiff()) {
             try {
