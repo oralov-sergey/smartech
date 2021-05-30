@@ -29,19 +29,32 @@ public class Comparison extends SuperClass {
             e.printStackTrace();
         }
         int diffNumber = new ImageDiffer().makeDiff(expectedImage, actualImage).getDiffSize();
-        ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage).withDiffSizeTrigger(50000);
+        if (diffNumber == 0) {
+            ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage);
+            File diffFile = new File("src/main/resources/screenshots/" + diffImageName + ".png");
+            if (diff.hasDiff()) {
+                try {
+                    ImageIO.write(diff.getMarkedImage(), "png", diffFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                fail("Images not equal");
+            }
+        } else {
+            ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage).withDiffSizeTrigger(50000);
          /*
              ".withDiffSizeTrigger(50000)" I used it because when I checked the test in a day, there was a test failure.
              It happened because of changing that map on the website itself.
          */
-        File diffFile = new File("src/main/resources/screenshots/" + diffImageName + ".png");
-        if (diff.hasDiff()) {
-            try {
-                ImageIO.write(diff.getMarkedImage(), "png", diffFile);
-            } catch (IOException e) {
-                e.printStackTrace();
+            File diffFile = new File("src/main/resources/screenshots/" + diffImageName + ".png");
+            if (diff.hasDiff()) {
+                try {
+                    ImageIO.write(diff.getMarkedImage(), "png", diffFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                fail("Images not equal even after ignoring");
             }
-            fail("Images not equal");
         }
     }
 }
