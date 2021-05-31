@@ -50,7 +50,7 @@ public class ScriptTest extends SuperClass {
     }
 
     // This failed test was added to verify ability attach screenshot for failed cases.
-   @Test
+    @Test
     public void script2() {
         yandexSearchFieldPage.getYandex();
         fail();
