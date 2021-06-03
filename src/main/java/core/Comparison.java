@@ -41,7 +41,7 @@ public class Comparison extends SuperClass {
                 fail("Images not equal");
             }
         } else {
-            ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage).withDiffSizeTrigger(500000);
+            ImageDiff diff = new ImageDiffer().makeDiff(expectedImage, actualImage).withDiffSizeTrigger(1);
          /*
              ".withDiffSizeTrigger(50000)" I used it because when I checked the test in a day, there was a test failure.
              It happened because of changing that map on the website itself.
