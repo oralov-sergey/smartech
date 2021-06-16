@@ -4,6 +4,9 @@ import core.SuperClass;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
 import static org.junit.Assert.fail;
 
@@ -24,7 +27,7 @@ public class ScriptTest extends SuperClass {
     public static final String DIFF_MAPS_CASE_2 = "diffMapsCase2";
 
     @Test
-    public void script() {
+    public void checkingTheDistanceAndCostOfTheTrip() {
         yandexSearchFieldPage.getYandex();
         yandexSearchFieldPage.writeTextAndClick();
 
@@ -51,7 +54,7 @@ public class ScriptTest extends SuperClass {
 
     // This failed test was added to verify ability attach screenshot for failed cases.
     @Test
-    public void script2() {
+    public void exampleOfAfailedTest() {
         yandexSearchFieldPage.getYandex();
         fail();
     }
